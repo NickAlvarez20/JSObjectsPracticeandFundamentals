@@ -19,36 +19,41 @@ Cookies.prototype.describe = function () {
     return `${this.size} ${this.flavor} cookies, ${this.count} left.`
 }
 
+Cookies.prototype.eatCookie = function () {
+    if (this.count > 0) {
+        this.count--;
+        console.log(`Mmm, one ${this.flavor} cookie eaten! ${this.count} left.`)
+    } else {
+        console.log(`No ${this.flavor} cookies left to eat!`)
+    }
+}
+
+Cookies.prototype.addCookies = function (batchCookies) {
+    if (typeof batchCookies === 'number' && batchCookies > 0) {
+        this.count += batchCookies;
+    } else {
+        this.count = this.count;
+        console.log("Please add a valid number of cookies!")
+    }
+}
+
+Cookies.prototype.describeFlavor = function () {
+    console.log(`This ${this.flavor} cookie is very tasty! It is just like grandma made!`);
+}
+
 //Instantiate new cookie objects
 
 const chocyChip = new Cookies("Large", "ChocyChip", 12);
 const whiteChocy = new Cookies("Medium", "WhiteChocy", 240);
 
-//Invoke count cookies method on each new object
+//Test eat cookie method
+chocyChip.eatCookie();
+console.log(chocyChip);
+chocyChip.addCookies("fru");
+console.log(chocyChip);
 
-chocyChip.countCookies();
-whiteChocy.countCookies();
+chocyChip.describeFlavor();
 
-//Log the updates to see how they performed
-
-chocyChip.updateCount("noob");
-console.log(chocyChip.count)
-console.log(chocyChip)
-
-
-console.log(chocyChip.hasOwnProperty('countCookies'));
-console.log('countCookies' in chocyChip);
-console.log(Cookies.prototype.isPrototypeOf(chocyChip));
-console.log(Object.getPrototypeOf(chocyChip));
-
-console.log(chocyChip.describe());
-console.log(whiteChocy.describe());
-
-chocyChip.countCookies = function () {
-    console.log(`Only ${this.count} ChocyChips remain!`);
-}
-chocyChip.countCookies(); // "Only 0 ChocyChips remain!"
-whiteChocy.countCookies(); // "There are approximately 240 in the box."
 
 
 //node ObjectConstructors.js
