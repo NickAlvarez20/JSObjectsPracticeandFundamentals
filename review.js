@@ -24,4 +24,23 @@ const Loonch = new Meal("Tuna", "Lunch", 3);
 Brecky.describe();
 Loonch.describe();
 
+
+const baseTool = {
+    use() {
+        console.log(`Using ${this.name}`);
+    }
+}
+
+const knife = Object.create(baseTool);
+knife.name = "Knife";
+knife.use();
+
+//Override use tool
+knife.use = function () {
+    console.log(`You have devolved into caveman, you do not know what a ${this.name} is.`)
+}
+knife.use();
+
+
+
 // node review.js
